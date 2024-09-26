@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "8085:80"
+      - "443:443"
+    volumes:
+      - ${DOCUMENT_ROOT-./backend}:/var/www/html
+      - ${LOG_DIR-./.config/logs/apache2}:/var/log/apache2
+      - ${PHP_INI-./.config/php/php.ini}:/usr/local/etc/php/php.ini
+      - ${VHOSTS_DIR-./.config/vhosts}:/etc/apache2/sites-enabled
+    networks:
+      - api
+    command: /bin/sh -c "composer install --no-dev --optimize-autoloader && composer dump-autoload --optimize && apache2-foreground"
+  web:
+    container_name: frontend
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "8086:80"
+    depends_on:
+      - api
+    networks:
+      - api
+
+  postgres:
+    image: postgres:16.3
+    container_name: crud_db
+    env_file: 
+      - ./backend/.env
+    ports:
+      - "8432:5432"
+    volumes:
+      - ./backend/Migrations:/docker-entrypoint-initdb.d
+    networks:
+      - api
+
+networks:
+  api:
+    driver: bridge

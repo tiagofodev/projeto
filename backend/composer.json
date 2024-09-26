@@ -1,0 +1,10 @@
+{
+    "name": "tiago/crud",
+    "description": "Projeto Crud PHP",
+    "require":{},
+    "autoload":{
+        "psr-4": {
+            "App\\":"App/"
+        }
+    }
+}

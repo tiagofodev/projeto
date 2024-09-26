@@ -1,0 +1,1 @@
+INSERT INTO niveis (nivel) VALUES ('Junior'), ('Pleno'), ('Senior');

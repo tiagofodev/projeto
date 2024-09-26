@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Gerenciar Níveis</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./../js/niveis.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Botão Adicionar Nível -->
+        <div class="container mt-5">
+            <h1 class="mb-4">Lista de Niveis</h1>
+            <button id="addNivelBtn" class="btn btn-primary mb-3" onclick="Niveis.save()">Adicionar Nível</button>
+        <br>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="col-1">Identificador</th>
+                    <th scope="col" class="col-5">Nome</th>
+                    <th scope="col" class="col-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="nivelTableBody">
+                <!-- Linhas da tabela serão inseridas aqui pelo JavaScript -->
+            </tbody>
+        </table>
+        <nav aria-label="Navegação" id="nivelTableBody">
+            <ul class="pagination justify-content-center">
+               
+            </ul>
+        </nav>
+    </div>
+
+</body>
+
+<script>
+    Niveis.load();
+</script>
+
+</html>

@@ -1,0 +1,4 @@
+<Directory "/var/www/html">
+        Header set Access-Control-Allow-Origin "*"
+        AllowOverride FileInfo
+</Directory>
